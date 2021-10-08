@@ -2,6 +2,7 @@ package com.example.air.interfaces.api;
 
 import com.example.air.application.AirQualityService;
 import com.example.air.application.Sido;
+import com.example.air.application.util.DateUtil;
 import com.example.air.interfaces.api.dto.AirQualityDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,7 @@ public class AirQualityApiController {
 
     @GetMapping("/{sidoCode}")
     public AirQualityDto.GetAirQualityInfo getAirQualityInfo(@PathVariable("sidoCode") Sido sidoCode,
-                                                             @RequestParam(required = false) String gu) {
-        return airQualityService.getAirQualityInfo(sidoCode, gu);
+                                                             @RequestParam(required = false, defaultValue = "all") String gu) {
+        return airQualityService.getAirQualityInfo(sidoCode, gu, DateUtil.getDateHourString());
     }
 }
