@@ -1,22 +1,19 @@
 package com.example.air.interfaces.api;
 
 import com.example.air.application.AirQualityService;
-import com.example.air.application.Sido;
-import com.example.air.interfaces.api.dto.AirQualityDto;
+import com.example.air.application.AirQualityInfo;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/air-quality")
 public class AirQualityApiController {
     private final AirQualityService airQualityService;
 
-    @GetMapping("/{sidoCode}")
-    public AirQualityDto.GetAirQualityInfo getAirQualityInfo(@PathVariable("sidoCode") Sido sidoCode,
-                                                             @RequestParam(required = false) String gu) {
-        return airQualityService.getAirQualityInfo(sidoCode, gu);
+    // TODO: 시도와 구정보를 parameter 로 받는 GET API 작성
+    @GetMapping("")
+    public AirQualityInfo getAirQualityInfo() {
+        return airQualityService.getAirQualityInfo();
     }
 }
